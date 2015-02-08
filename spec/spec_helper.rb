@@ -9,7 +9,6 @@ if RUBY_ENGINE == 'rbx'
 end
 
 require 'rom-redis'
-require 'byebug'
 
 root = Pathname(__FILE__).dirname
 

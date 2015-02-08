@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gemspec
 
 group :test do
-  gem 'byebug'
   gem 'rom', '~> 0.6.0', github: 'rom-rb/rom', branch: 'master'
   gem 'minitest'
   gem 'virtus'
