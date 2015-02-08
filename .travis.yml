@@ -3,8 +3,10 @@ sudo: false
 cache: bundler
 bundler_args: --without yard guard benchmarks tools
 env:
-  - CODECLIMATE_REPO_TOKEN=TODO
-script: "bundle exec rake ci"
+  - CODECLIMATE_REPO_TOKEN=621087cd55965563c8deffef2b11eef3298a42dc5795686da994ea3ac86f7b13
+services:
+  - redis-server
+script: "bundle exec rake spec"
 rvm:
   - 2.0
   - 2.1
