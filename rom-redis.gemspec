@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "redic"
-  spec.add_runtime_dependency "rom", "~> 0.6", ">= 0.6.0"
+  spec.add_runtime_dependency "rom", "~> 0.6.0.beta"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake", "~> 10.0"
