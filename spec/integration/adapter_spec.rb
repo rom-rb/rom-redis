@@ -1,24 +1,41 @@
-require 'spec_helper'
-
 describe 'ROM / Redis / Setup' do
+  let(:setup) { ROM.setup(:redis) }
+  let(:rom)   { setup.finalize }
+  subject     { rom.relations.users }
+
   before do
-    ROM.setup(:redis)
-  end
+    class User
+      attr_reader :name
 
-  after do
-    ROM.env.repositories[:default].connection.call('SET', 'users', [])
-  end
-
-  let(:rom) { ROM.finalize.env }
-
-  it 'works' do
-    class Users < ROM::Relation[:redis]
+      def initialize(name)
+        @name = name
+      end
     end
 
-    users = rom.relations.users
+    setup.relation(:users) do
+      def by_id(id)
+        hget(:users, id)
+      end
+    end
 
-    users.insert('id' => 1, 'name' => 'Piotr')
+    setup.mappers do
+      define(:users) do
+        model User
+        register_as :entity
+      end
+    end
 
-    expect(users.to_a).to eql([{ 'id' => 1, 'name' => 'Piotr' }])
+    setup.commands(:users) do
+      define :create
+    end
+  end
+
+  it 'works' do
+    rom.relations.users.hset(:users, 1, 'john doe').hset(:users, 2, 'john snow').to_a
+
+    user = rom.relation(:users).by_id(1).as(:entity).to_a.first
+
+    expect(user).to be_a(User)
+    expect(user.name).to eq('john doe')
   end
 end

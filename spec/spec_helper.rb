@@ -16,11 +16,10 @@ Dir[root.join('shared/*.rb').to_s].each { |f| require f }
 
 RSpec.configure do |config|
   config.before do
-    @constants = Object.constants
+    Redis.current.flushall
   end
 
   config.after do
-    added_constants = Object.constants - @constants
-    added_constants.each { |name| Object.send(:remove_const, name) }
+    Redis.current.flushall
   end
 end
