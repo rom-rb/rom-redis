@@ -3,9 +3,7 @@ source 'https://rubygems.org'
 gemspec
 
 group :test do
-  gem 'rom', '~> 0.6.0.beta', github: 'rom-rb/rom', branch: 'master'
-  gem 'minitest'
-  gem 'virtus'
+  gem 'rom', github: 'rom-rb/rom', branch: 'master'
   gem 'activesupport'
   gem 'rspec', '~> 3.1'
   gem 'codeclimate-test-reporter', require: false
