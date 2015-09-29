@@ -16,16 +16,16 @@ module ROM
         view.each(&block)
       end
 
-      def method_missing(command, *args, &block)
-        self.class.new(connection, commands.clone.push([command, args, block]))
+      def method_missing(command, *args)
+        self.class.new(connection, commands.clone.push([command, args]))
       end
 
     private
 
       def view
-        commands.map do |command, args, block|
-          connection.send(command, *args) # do we need to provide blocks?
-        end
+        commands.map do |command, args|
+          connection.send(command, *args)
+        end.flatten
       end
     end
   end
