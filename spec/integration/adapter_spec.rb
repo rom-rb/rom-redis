@@ -24,10 +24,6 @@ describe 'ROM / Redis / Setup' do
         register_as :entity
       end
     end
-
-    setup.commands(:users) do
-      define :create
-    end
   end
 
   it 'works' do

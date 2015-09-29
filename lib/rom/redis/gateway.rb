@@ -3,7 +3,6 @@ require 'redis/namespace'
 
 require 'rom/gateway'
 require 'rom/redis/dataset'
-require 'rom/redis/commands'
 
 module ROM
   module Redis
