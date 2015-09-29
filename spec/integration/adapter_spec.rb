@@ -1,4 +1,4 @@
-describe 'ROM / Redis / Setup' do
+describe 'Adapter' do
   let(:setup) { ROM.setup(:redis) }
   let(:rom)   { setup.finalize }
   subject     { rom.relations.users }
@@ -7,14 +7,14 @@ describe 'ROM / Redis / Setup' do
     class User
       attr_reader :name
 
-      def initialize(name)
-        @name = name
+      def initialize(attrs)
+        @name = attrs.fetch('name', nil)
       end
     end
 
     setup.relation(:users) do
       def by_id(id)
-        hget(:users, id)
+        hgetall(id)
       end
     end
 
@@ -27,9 +27,12 @@ describe 'ROM / Redis / Setup' do
   end
 
   it 'works' do
-    rom.relations.users.hset(:users, 1, 'john doe').hset(:users, 2, 'john snow').to_a
+    rom.relations.users
+      .hset(1, 'name', 'john doe')
+      .hset(2, 'name', 'john snow')
+      .to_a
 
-    user = rom.relation(:users).by_id(1).as(:entity).to_a.first
+    user = rom.relation(:users).as(:entity).by_id(1).to_a.first
 
     expect(user).to be_a(User)
     expect(user.name).to eq('john doe')
