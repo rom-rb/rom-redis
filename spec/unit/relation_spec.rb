@@ -1,17 +1,10 @@
 describe ROM::Redis::Relation do
-  let!(:env) do
-    env = ROM::Environment.new
-    env.setup(:redis)
-    env.use(:auto_registration)
-    env
-  end
-
-  let(:rom) { env.finalize.env }
+  include_context 'container'
 
   subject { rom.relation(:users) }
 
   before do
-    env.relation(:users)
+    configuration.relation(:users)
   end
 
   it '#set' do

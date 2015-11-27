@@ -1,15 +1,8 @@
 describe 'Adapter' do
-  let!(:env) do
-    env = ROM::Environment.new
-    env.setup(:redis)
-    env.use(:auto_registration)
-    env
-  end
-
-  let(:rom) { env.finalize.env }
+  include_context 'container'
 
   before do
-    env.relation(:users) do
+    configuration.relation(:users) do
       adapter :redis
 
       def by_id(id)
@@ -17,7 +10,7 @@ describe 'Adapter' do
       end
     end
 
-    env.mappers do
+    configuration.mappers do
       define(:users) do
         model User
         register_as :entity

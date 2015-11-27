@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'redis', '~> 3.0'
   spec.add_runtime_dependency 'redis-namespace', '~> 1.5.2'
-  spec.add_runtime_dependency 'rom', '~> 0.9', '>= 0.9.0'
+  spec.add_runtime_dependency 'rom', '~> 1.0.0.beta2'
   spec.add_runtime_dependency 'inflecto'
 
   spec.add_development_dependency 'bundler'
