@@ -1,24 +1,23 @@
 describe 'Adapter' do
-  let(:setup) { ROM.setup(:redis) }
-  let(:rom)   { setup.finalize }
-  subject     { rom.relations.users }
+  let!(:env) do
+    env = ROM::Environment.new
+    env.setup(:redis)
+    env.use(:auto_registration)
+    env
+  end
+
+  let(:rom) { env.finalize.env }
 
   before do
-    class User
-      attr_reader :name
+    env.relation(:users) do
+      adapter :redis
 
-      def initialize(attrs)
-        @name = attrs.fetch('name', nil)
-      end
-    end
-
-    setup.relation(:users) do
       def by_id(id)
         hgetall(id)
       end
     end
 
-    setup.mappers do
+    env.mappers do
       define(:users) do
         model User
         register_as :entity

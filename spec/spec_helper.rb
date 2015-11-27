@@ -3,16 +3,15 @@
 require 'bundler'
 Bundler.setup
 
-if RUBY_ENGINE == 'rbx'
-  require "codeclimate-test-reporter"
-  CodeClimate::TestReporter.start
-end
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
 
 require 'rom-redis'
 
 root = Pathname(__FILE__).dirname
 
 Dir[root.join('shared/*.rb').to_s].each { |f| require f }
+Dir[root.join('support/*.rb').to_s].each { |f| require f }
 
 RSpec.configure do |config|
   config.before do

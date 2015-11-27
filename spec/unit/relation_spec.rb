@@ -1,10 +1,17 @@
 describe ROM::Redis::Relation do
-  let(:setup) { ROM.setup(:redis) }
-  let(:rom)   { setup.finalize }
-  subject     { rom.relations.users }
+  let!(:env) do
+    env = ROM::Environment.new
+    env.setup(:redis)
+    env.use(:auto_registration)
+    env
+  end
+
+  let(:rom) { env.finalize.env }
+
+  subject { rom.relation(:users) }
 
   before do
-    setup.relation(:users)
+    env.relation(:users)
   end
 
   it '#set' do
@@ -18,6 +25,6 @@ describe ROM::Redis::Relation do
   it '#hget' do
     subject.hset(:users, :john, :doe).to_a
 
-    expect(subject.hgetall(:users).to_a).to eq([{'john' => 'doe'}])
+    expect(subject.hgetall(:users).to_a).to eq([{ 'john' => 'doe' }])
   end
 end
