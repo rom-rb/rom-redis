@@ -26,7 +26,7 @@ module ROM
         datasets.key?(name.to_s)
       end
 
-    private
+      private
 
       def namespace(name)
         ::Redis::Namespace.new(name.to_s, redis: @connection)

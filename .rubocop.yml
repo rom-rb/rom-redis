@@ -6,64 +6,18 @@ AllCops:
   Exclude:
     - tmp/**/*
 
-# It's quite readable when we know what we are doing
-Lint/AssignmentInCondition:
-  Enabled: false
-
 # No need to handle LoadError in rake
 Lint/HandleExceptions:
   Exclude:
     - rakelib/*.rake
 
-# gemspec is a special snowflake
-Metrics/LineLength:
-  Exclude:
-    - rom-redis.gemspec
-
-# The enforced style doesn't match Vim's defaults
-Style/AlignParameters:
-  Enabled: false
-
-# UTF-8 is perfectly fine in comments
-Style/AsciiComments:
-  Enabled: false
-
 # Documentation checked by Inch CI
 Style/Documentation:
   Enabled: false
 
-# Early returns have their vices
-Style/GuardClause:
-  Enabled: false
-
-# Need to be skipped for >-> usage
-Style/Lambda:
-  Enabled: false
-
-# Multiline block chains are ok
-Style/MultilineBlockChain:
-  Enabled: false
-
-# Result::Success and Result::Failure use > for callbacks
-Style/OpMethod:
-  Exclude:
-    - lib/rom/command_registry.rb
-
 # Don't introduce semantic fail/raise distinction
 Style/SignalException:
   EnforcedStyle: only_raise
-
-# Need to be skipped for >-> usage
-Style/SpaceAroundOperators:
-  Enabled: false
-
-# Accept both single and double quotes
-Style/StringLiterals:
-  Enabled: false
-
-# Allow def self.foo; @foo; end
-Style/TrivialAccessors:
-  Enabled: false
 
 # Allow rom-redis
 Style/FileName:

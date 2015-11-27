@@ -20,7 +20,7 @@ module ROM
         self.class.new(connection, commands.clone.push([command, args]))
       end
 
-    private
+      private
 
       def view
         commands.map do |command, args|

@@ -1,5 +1,5 @@
 group :red_green_refactor, halt_on_fail: true do
-  guard :rspec, cmd: "rspec", all_on_start: true do
+  guard :rspec, cmd: 'rspec', all_on_start: true do
     # run all specs if Gemfile.lock is modified
     watch('Gemfile.lock') { 'spec' }
 
