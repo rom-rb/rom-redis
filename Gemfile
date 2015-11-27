@@ -4,7 +4,6 @@ gemspec
 
 group :test do
   gem 'rom', github: 'rom-rb/rom', branch: 'master'
-  gem 'activesupport'
   gem 'rspec', '~> 3.1'
   gem 'codeclimate-test-reporter', require: false
 end
