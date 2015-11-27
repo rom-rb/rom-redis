@@ -25,7 +25,7 @@ module ROM
       def view
         commands.map do |command, args|
           connection.send(command, *args)
-        end.flatten
+        end
       end
     end
   end
