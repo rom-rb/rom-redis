@@ -7,6 +7,8 @@ require 'rom/redis/dataset'
 module ROM
   module Redis
     class Gateway < ROM::Gateway
+      adapter :redis
+
       attr_reader :datasets
 
       def initialize(options = {})

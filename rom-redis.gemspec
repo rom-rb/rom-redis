@@ -18,9 +18,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency 'redis', '~> 3.0'
-  spec.add_runtime_dependency 'redis-namespace', '~> 1.5.2'
-  spec.add_runtime_dependency 'rom', '~> 1.0.0'
+  spec.add_runtime_dependency 'redis', '~> 4.0'
+  spec.add_runtime_dependency 'redis-namespace', '~> 1.6.0'
+  spec.add_runtime_dependency 'rom', '~> 5.0'
   spec.add_runtime_dependency 'inflecto'
 
   spec.add_development_dependency 'bundler'

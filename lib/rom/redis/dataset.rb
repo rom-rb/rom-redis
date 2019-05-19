@@ -16,6 +16,10 @@ module ROM
         view.each(&block)
       end
 
+      def map(&block)
+        view.map(&block)
+      end
+
       def method_missing(command, *args)
         self.class.new(connection, commands.clone.push([command, args]))
       end
