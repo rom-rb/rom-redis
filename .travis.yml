@@ -5,17 +5,18 @@ bundler_args: --without tools
 services:
   - redis-server
 script: "bundle exec rake spec"
+after_success:
+- '[ -d coverage ] && bundle exec codeclimate-test-reporter'
 rvm:
-  - 2.0
-  - 2.1
-  - 2.2
-  - rbx-2
-  - jruby-head
-  - ruby-head
+  - 2.4
+  - 2.5
+  - 2.6
+  - jruby-9.2.7.0
 env:
   global:
     - CODECLIMATE_REPO_TOKEN=621087cd55965563c8deffef2b11eef3298a42dc5795686da994ea3ac86f7b13
     - JRUBY_OPTS='--dev -J-Xmx1024M'
+    - COVERAGE='true'
 matrix:
   allow_failures:
     - rvm: ruby-head

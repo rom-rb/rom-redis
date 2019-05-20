@@ -1,7 +1,7 @@
 describe ROM::Redis::Relation do
   include_context 'container'
 
-  subject { rom.relation(:users) }
+  subject { rom.relations[:users] }
 
   before do
     configuration.relation(:users)

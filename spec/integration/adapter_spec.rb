@@ -13,7 +13,6 @@ describe 'Adapter' do
     configuration.mappers do
       define(:users) do
         model User
-        register_as :entity
       end
     end
   end
@@ -24,7 +23,7 @@ describe 'Adapter' do
       .hset(2, 'name', 'john snow')
       .to_a
 
-    user = rom.relation(:users).as(:entity).by_id(1).to_a.first
+    user = rom.relations[:users].by_id(1).map_with(:users).to_a.first
 
     expect(user).to be_a(User)
     expect(user.name).to eq('john doe')
