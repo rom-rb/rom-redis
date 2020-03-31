@@ -13,24 +13,7 @@
 [![Test Coverage](https://codeclimate.com/github/rom-rb/rom-redis/badges/coverage.svg)][codeclimate]
 [![Inline docs](http://inch-ci.org/github/rom-rb/rom-redis.svg?branch=master)][inchpages]
 
-
 Redis suport for [Ruby Object Mapper](https://github.com/rom-rb/rom).
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'rom-redis'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install rom-redis
 
 ## License
 
